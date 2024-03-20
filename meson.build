@@ -39,7 +39,7 @@ foreach theme : themes
   custom_target(
     theme,
     output : theme,
-    command : ['./build-theme', makebundle, '@OUTPUT@', '@SOURCE_ROOT@/themes/'+theme],
+    command : ['build-aux/build-theme', makebundle, '@OUTPUT@', '@SOURCE_ROOT@/themes/'+theme],
     install : true,
     install_dir : res_path+'/res')
 endforeach
@@ -125,7 +125,7 @@ klystrack = executable('klystrack', [
   custom_target('gen-version-headers',
     output: ['version.h','version_number.h'],
     input: ['src/version'],
-    command: ['./gen-version-headers', '@OUTDIR@', '@INPUT@'])],
+    command: ['build-aux/gen-version-headers', '@OUTDIR@', '@INPUT@'])],
   include_directories : include_directories('src', 'klystron/src'),
   dependencies : [sdl2, alsa],
   link_with : klystron,
