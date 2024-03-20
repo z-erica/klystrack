@@ -1,0 +1,21 @@
+#!/bin/sh
+
+MAKEBUNDLE=$1
+THEME=$2
+THEME_DIR=$3
+
+echo "Building theme $THEME..."
+mkdir -p themetemp.$THEME
+if test -e $THEME_DIR/colors.txt; then cp -f $THEME_DIR/colors.txt themetemp.$THEME ; fi
+if test -e $THEME_DIR/bevel.*; then cp -f $THEME_DIR/bevel.* themetemp.$THEME ; fi
+if test -e $THEME_DIR/vu.*; then cp -f $THEME_DIR/vu.* themetemp.$THEME ; fi
+if test -e $THEME_DIR/analyzor.*; then cp -f $THEME_DIR/analyzor.* themetemp.$THEME ; fi
+if test -e $THEME_DIR/logo.*; then cp -f $THEME_DIR/logo.* themetemp ; fi
+if test -e $THEME_DIR/catometer.*; then cp -f $THEME_DIR/catometer.* themetemp.$THEME ; fi
+if test -e $THEME_DIR/cursor.*; then cp -f $THEME_DIR/cursor.* themetemp.$THEME ; fi
+if test -e $THEME_DIR/icon.*; then cp -f $THEME_DIR/icon.* themetemp.$THEME ; fi
+if test -d $THEME_DIR/font; then $MAKEBUNDLE themetemp.$THEME/8x8.fnt $THEME_DIR/font ; fi
+if test -d $THEME_DIR/font7x6; then $MAKEBUNDLE themetemp.$THEME/7x6.fnt $THEME_DIR/font7x6 ; fi
+if test -d $THEME_DIR/tiny; then $MAKEBUNDLE themetemp.$THEME/4x6.fnt $THEME_DIR/tiny ; fi
+$MAKEBUNDLE $THEME themetemp.$THEME
+rm -rf themetemp.$THEME

@@ -1,0 +1,30 @@
+#!/bin/sh
+
+OUTDIR=$1
+VERSION=$2
+
+echo '#ifndef KLYSTRON_VERSION_H' > $OUTDIR/klystron_version.h
+echo '#define KLYSTRON_VERSION_H' >> $OUTDIR/klystron_version.h
+echo '#define KLYSTRON_REVISION "' | tr -d '\n' >> $OUTDIR/klystron_version.h
+date +"%Y%m%d" | tr -d '\n' >> $OUTDIR/klystron_version.h
+echo '"' >> $OUTDIR/klystron_version.h
+echo '#define KLYSTRON_VERSION_STRING "klystron " KLYSTRON_REVISION' >> $OUTDIR/klystron_version.h
+echo '#endif' >> $OUTDIR/klystron_version.h
+
+echo '#ifndef VERSION_H' > $OUTDIR/version.h
+echo '#define VERSION_H' >> $OUTDIR/version.h
+echo '#include "version_number.h"' >> $OUTDIR/version.h
+echo '#define REVISION "' | tr -d '\n'  >> $OUTDIR/version.h
+date +"%Y%m%d" | tr -d '\n' >> $OUTDIR/version.h
+echo '"' >> $OUTDIR/version.h
+echo '#define VERSION_STRING "klystrack " VERSION " " REVISION' >> $OUTDIR/version.h
+echo '#endif' >> $OUTDIR/version.h
+
+echo '#ifndef VERSION_NUMBER' > $OUTDIR/version_number.h
+echo '#define VERSION_NUMBER' >> $OUTDIR/version_number.h
+echo '#define VERSION "' | tr -d '\n' >> $OUTDIR/version_number.h
+cat $VERSION | tr -d '\r\n' | tr -d '\n' >> $OUTDIR/version_number.h
+echo '"' >> $OUTDIR/version_number.h
+echo '#endif' >> $OUTDIR/version_number.h
+
+
