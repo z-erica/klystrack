@@ -1,4 +1,4 @@
-project('klystrack', 'c')
+project('klystrack', 'c', version: '1.7.8')
 
 sdl2 = dependency('SDL2')
 sdl2_image = dependency('SDL2_image')
